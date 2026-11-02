@@ -1,0 +1,80 @@
+---
+config:
+  layout: dagre
+  flowchart:
+    nodeSpacing: 25
+    rankSpacing: 35
+    curve: linear
+  themeVariables:
+    fontSize: "15px"
+---
+flowchart TB
+
+    subgraph ROW1["PHASE A — DATA UNDERSTANDING AND PREPARATION · Steps 1–3"]
+        direction LR
+
+        A["1. Problem Definition<br/>Define the goal of predicting monthly rent with linear regression, adapting the house-price brief to the available rental data"]
+
+        B["2. Data Collection and Inspection<br/>Load the 4,746 rental listings from six cities and check data types, missing values, duplicates, and column meanings"]
+
+        C["3. Exploratory Data Analysis<br/>Study the heavily skewed rent distribution and its links with city, furnishing, size, and bathroom count"]
+
+        A --> B --> C
+    end
+
+    subgraph ROW2["PHASE A — DATA UNDERSTANDING AND PREPARATION · Steps 4–6"]
+        direction LR
+
+        D["4. Data Cleaning<br/>Parse the Floor text into numeric features, drop weak columns, merge rare categories, and remove 107 implausible outliers"]
+
+        E["5. Feature Selection<br/>Check feature relevance using correlations and median rents, test multicollinearity with VIF, and keep 9 features"]
+
+        F["6. Transformation and Data Split<br/>Log-transform rent, then scale and encode features in a pipeline fitted on the 80% training set only"]
+
+        D --> E --> F
+    end
+
+    subgraph ROW3["PHASE B — MODELLING AND EVALUATION · Steps 7–9"]
+        direction LR
+
+        G["7. Linear Regression Baseline<br/>Train on log(rent) and compare with a raw-rent model to confirm the benefit of the log transform"]
+
+        H["8. Regularization and Tuning<br/>Tune Ridge, Lasso, and ElasticNet with 5-fold GridSearchCV to test whether penalties reduce overfitting"]
+
+        I["9. Polynomial and Cross-Validation<br/>Test degree-2 terms and check stability across folds, then select the simpler linear model"]
+
+        G --> H --> I
+    end
+
+    subgraph ROW4["PHASE B — INTERPRETATION AND REPORTING · Steps 10–12"]
+        direction LR
+
+        J["10. Model Evaluation<br/>Assess the 20% test set using MAE, RMSE, MAPE, and R², with residual plots and error by city"]
+
+        K["11. Coefficient Interpretation<br/>Convert coefficients into percentage effects on rent, such as the impact of city, furnishing, and size"]
+
+        L["12. Insights, Reporting, and Repository<br/>Write recommendations, limitations, and the full report, then publish the notebook and report to GitHub"]
+
+        J --> K --> L
+    end
+
+    ROW1 --> ROW2
+    ROW2 --> ROW3
+    ROW3 --> ROW4
+
+    N["Scope Note<br/>Data covers rental listings only; crime rate and transport distance were<br/>unavailable, so rent is the target and results show association, not causation"]
+
+    ROW4 -.-> N
+
+    classDef prep fill:#EAF2FF,stroke:#2563EB,color:#172554,stroke-width:2px;
+    classDef model fill:#ECFDF5,stroke:#059669,color:#064E3B,stroke-width:2px;
+    classDef note fill:#FFFBEB,stroke:#D97706,color:#78350F,stroke-width:1px;
+
+    class A,B,C,D,E,F prep;
+    class G,H,I,J,K,L model;
+    class N note;
+
+    style ROW1 fill:#F5F8FF,stroke:#93B4F5
+    style ROW2 fill:#F5F8FF,stroke:#93B4F5
+    style ROW3 fill:#F2FCF7,stroke:#75C9A5
+    style ROW4 fill:#F2FCF7,stroke:#75C9A5
