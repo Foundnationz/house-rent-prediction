@@ -4,7 +4,7 @@ Predicting monthly rent for 4,700+ listings across six Indian cities using linea
 ## Project summary
 This project builds a linear regression model that predicts monthly rent from property features (city, size, BHK, bathrooms, floor, furnishing, area type and tenant preference). The workflow covers data exploration, preprocessing, feature selection and transformation, model building (Linear, Ridge, Lasso, ElasticNet and Polynomial regression), evaluation and recommendations.
 
-**Main result:** on a held-out test set the final linear model reaches R² ≈ 0.70 (about 0.83 on the log scale) with an average error of about 32%.
+**Main result:** On a held-out test set the final linear model reaches R² ≈ 0.70 (about 0.83 on the log scale) with an average error of about 32%.
 
 ## Repository structure
 ```
