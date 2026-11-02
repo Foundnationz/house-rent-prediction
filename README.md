@@ -11,8 +11,11 @@ This project builds a linear regression model that predicts monthly rent from pr
 ├── notebooks/   Google Colab notebook (code and explanations)
 ├── data/        House_Rent_Dataset.csv
 ├── report/      Project report (PDF)
+├── diagrams/    Project workflow diagram (image and Mermaid source)
 └── requirements.txt
 ```
+## Project workflow
+![Project workflow diagram](diagrams/project_workflow.png)
 
 ## How to run Update README.md
 1. Open the notebook in Colab:
